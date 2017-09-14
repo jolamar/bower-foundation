@@ -65,6 +65,7 @@
         target.triggerHandler('toggled', [accordion]);
         accordion.triggerHandler('toggled', [target]);
         S(this).attr('aria-expanded','true');
+	target.focus();
       });
     },
 
