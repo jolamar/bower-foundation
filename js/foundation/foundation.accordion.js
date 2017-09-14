@@ -25,7 +25,7 @@
 
       S(this.scope)
       .off('.fndtn.accordion')
-      .on('click.fndtn.accordion', '[' + this.attr_name() + '] > dd > a, [' + this.attr_name() + '] > li > a', function (e) {
+      .on('click.fndtn.accordion', '[' + this.attr_name() + '] > dd > a, [' + this.attr_name() + '] > li > button', function (e) {
         var accordion = S(this).closest('[' + self.attr_name() + ']'),
             groupSelector = self.attr_name() + '=' + accordion.attr(self.attr_name()),
             settings = accordion.data(self.attr_name(true) + '-init') || self.settings,
@@ -57,7 +57,7 @@
         if (!settings.multi_expand) {
           siblings.removeClass(settings.active_class);
           aunts.removeClass(settings.active_class);
-          aunts.children('a').attr('aria-expanded','false');
+          aunts.children('button').attr('aria-expanded','false');
         }
 
         target.addClass(settings.active_class).parent().addClass(settings.active_class);
@@ -74,8 +74,8 @@
           aunts = $('> .accordion-navigation', accordion),
           settings = accordion.data(self.attr_name(true) + '-init') || self.settings;
 
-      aunts.children('a').attr('aria-expanded','false');
-      aunts.has('.' + settings.content_class + '.' + settings.active_class).addClass(settings.active_class).children('a').attr('aria-expanded','true');
+      aunts.children('button').attr('aria-expanded','false');
+      aunts.has('.' + settings.content_class + '.' + settings.active_class).addClass(settings.active_class).children('button').attr('aria-expanded','true');
 
       if (settings.multi_expand) {
         $instance.attr('aria-multiselectable','true');
@@ -102,7 +102,7 @@
   			var $item = S(this);
   			var is_active = $item.hasClass(active_class);
   			if ( ( is_active && toggle_state === 'close' ) || ( !is_active && toggle_state === 'open' ) || toggle_state === '' ) {
-  				$item.find('> a').trigger('click.fndtn.accordion');
+  				$item.find('> button').trigger('click.fndtn.accordion');
   			}
   		});
   	},
